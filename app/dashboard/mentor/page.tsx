@@ -33,9 +33,9 @@ export default function MentorDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 {/* Left Sidebar: Profile Preview */}
                 <div className="lg:col-span-1 space-y-6">
-                    <div className="bg-white p-4 rounded-xl border shadow-sm">
-                        <h3 className="font-semibold text-gray-900 mb-4 text-sm uppercase tracking-wide">Your Profile Preview</h3>
-                        <div className="pointer-events-none opacity-90 scale-95 origin-top">
+                    <div>
+                        <h3 className="font-semibold text-gray-900 mb-4 text-lg">Your Profile Preview</h3>
+                        <div className="pointer-events-none">
                             <MentorCard mentor={currentMentor} />
                         </div>
                         <div className="mt-4 text-center">
