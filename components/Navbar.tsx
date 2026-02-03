@@ -45,7 +45,7 @@ export function Navbar() {
                                 href="/become-a-mentor"
                                 className={cn("transition-colors hover:text-blue-600", pathname === '/become-a-mentor' && "text-blue-600")}
                             >
-                                Mentor Overview
+                                Become a Mentor
                             </Link>
                         )}
                         {isMentor && (
