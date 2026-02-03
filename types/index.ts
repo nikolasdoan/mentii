@@ -30,6 +30,10 @@ export type Mentee = {
     id: string;
     name: string;
     avatar: string;
+    segment?: 'High School' | 'University' | 'Professional' | 'Manager' | 'Other';
+    goals?: string[];
+    interests?: string[];
+    level?: 'Beginner' | 'Intermediate' | 'Advanced';
 };
 
 export type UserRole = 'mentor' | 'mentee' | 'admin';

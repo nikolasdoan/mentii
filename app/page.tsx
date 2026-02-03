@@ -30,9 +30,9 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/search">
+            <Link href="/onboarding">
               <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg shadow-lg shadow-blue-200">
-                Find a Mentor
+                Get Started
               </Button>
             </Link>
             <Link href="/become-a-mentor">
