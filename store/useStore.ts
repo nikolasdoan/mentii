@@ -19,6 +19,8 @@ interface StoreState {
     // Selectors (helpers)
     isUnlocked: (mentorId: string) => boolean;
     getRequestStatus: (mentorId: string) => RequestStatus;
+    isChatOpen: boolean;
+    toggleChat: () => void;
     resetDemo: () => void;
 }
 
@@ -30,8 +32,11 @@ export const useStore = create<StoreState>()(
             unlockedMentors: [],
             requests: {},
             bookings: [],
+            isChatOpen: false,
 
             setUserType: (type) => set({ currentUserType: type }),
+
+            toggleChat: () => set((state) => ({ isChatOpen: !state.isChatOpen })),
 
             unlockMentor: (mentorId) =>
                 set((state) => ({

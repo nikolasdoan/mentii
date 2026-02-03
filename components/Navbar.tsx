@@ -8,7 +8,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/components/ui/Button';
 
 export function Navbar() {
-    const { currentUserType, setUserType, requests, resetDemo } = useStore();
+    const { currentUserType, setUserType, requests, resetDemo, toggleChat } = useStore();
     const pathname = usePathname();
     const router = useRouter();
 
@@ -68,7 +68,7 @@ export function Navbar() {
                     </button>
 
                     <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="sm" className="relative">
+                        <Button variant="ghost" size="sm" className="relative" onClick={toggleChat}>
                             <MessageSquare className="h-5 w-5" />
                         </Button>
 

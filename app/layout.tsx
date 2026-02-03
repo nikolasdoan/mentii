@@ -5,6 +5,8 @@ import { clsx } from 'clsx';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 
+import { ChatWidget } from '@/components/ChatWidget';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -24,6 +26,7 @@ export default function RootLayout({
         <div className="flex-1">
           {children}
         </div>
+        <ChatWidget />
         <Footer />
       </body>
     </html>
