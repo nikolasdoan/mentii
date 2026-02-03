@@ -1,65 +1,84 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
+import { MOCK_MENTORS } from '@/data/mentors';
+import { MentorCard } from '@/components/MentorCard';
+import { CheckCircle, Search, Shield, Zap } from 'lucide-react';
 
 export default function Home() {
+  const featuredMentors = MOCK_MENTORS.filter(m => m.rating >= 4.9).slice(0, 4);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="flex min-h-screen flex-col">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-blue-50 to-white pt-24 pb-20 px-4">
+        <div className="container mx-auto text-center max-w-4xl">
+          <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-700 mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            Over 300+ Active Mentors Online
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-gray-900 mb-6">
+            Master any skill with <span className="text-blue-600">expert mentors</span>.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Connect with industry leaders, language experts, and virtuosos.
+            Swipe, compare, and book your first session in minutes.
           </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/search">
+              <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg shadow-lg shadow-blue-200">
+                Find a Mentor
+              </Button>
+            </Link>
+            <Link href="/auth/login?role=mentor">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-lg">
+                Become a Mentor
+              </Button>
+            </Link>
+          </div>
+
+          <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-500 font-medium">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-500" />
+              Verified Experts
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield className="h-4 w-4 text-green-500" />
+              Secure Payment
+            </div>
+            <div className="flex items-center gap-2">
+              <Zap className="h-4 w-4 text-green-500" />
+              Instant Chat
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Featured Mentors */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900">Featured Mentors</h2>
+              <p className="text-gray-500 mt-2">Top rated experts ready to help you.</p>
+            </div>
+            <Link href="/search">
+              <Button variant="ghost" className="text-blue-600">View All →</Button>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredMentors.map(mentor => (
+              <MentorCard key={mentor.id} mentor={mentor} />
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }

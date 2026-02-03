@@ -1,0 +1,155 @@
+## Simple PRD — Web-only Minimal Demo (Looks Real, Doesn’t Need to Work)
+
+### 1) Overview
+
+**Product:** Mentor↔Mentee “Swipe + Compare + Unlock Contact” demo web app
+**Goal:** Make it *feel* like a real marketplace so you can demo the concept and user flow.
+**Non-goal:** No real matching, chat, booking, or payment processing required.
+
+---
+
+## 2) Demo scope (what the demo must show)
+
+### Core user story (mentee)
+
+1. Mentee lands on site
+2. Searches “guitar”
+3. Sees **10–15 mentors** in a list with filters + “Compare”
+4. Clicks a mentor to view profile (contact info blurred)
+5. Clicks **“Request Mentor”** (shows “Request sent”)
+6. Clicks **“Unlock Contact”** (shows checkout UI → success)
+7. Contact becomes visible (“Unlocked” badge)
+8. Clicks **“Chat”** (opens a chat UI with fake messages)
+9. Clicks **“Book Session”** (opens booking UI → confirm)
+
+### Core user story (mentor)
+
+1. Mentor switches to “Mentor Mode”
+2. Creates/edits mentor profile (tags, price, availability, credentials)
+3. Views “Requests Inbox” (shows fake pending requests)
+4. Clicks Approve/Reject (UI updates state)
+
+---
+
+## 3) Pages / Screens (minimum set)
+
+1. **Landing page**
+
+   * CTA: “Find a mentor” / “Become a mentor”
+2. **Auth (fake)**
+
+   * “Continue with Email/Google” → always succeeds
+3. **Search + Results**
+
+   * Search bar + filters (topic, language, price, availability)
+   * Mentor cards (price, rating, tags, “new” badge)
+   * “Compare” panel (shows selected mentors side-by-side)
+4. **Mentor Profile**
+
+   * Full profile + pricing
+   * Contact section blurred + “Unlock Contact” button
+   * Buttons: “Request Mentor”, “Chat”, “Book”
+5. **Checkout modal (fake payment)**
+
+   * Package options: “Unlock 1”, “Unlock 3”
+   * Button: “Pay” → success animation
+6. **Chat UI**
+
+   * Pre-filled conversation
+   * Send button appends message locally
+7. **Booking UI**
+
+   * Calendar/time slots (static)
+   * Confirm → “Booking confirmed” toast
+8. **Mentor Dashboard**
+
+   * Profile editor form
+   * Requests inbox list with Approve/Reject buttons
+9. **Admin (optional for demo)**
+
+   * Toggle “Verified” badge on mentors
+
+---
+
+## 4) Fake data requirements (seeded JSON)
+
+Create a local dataset of **30 mentors** including:
+
+* name, avatar, headline
+* tags (e.g., Guitar, Piano, Math, SAT)
+* languages, timezone
+* price range (e.g., $15–$80/hr)
+* rating + review count
+* response rate (for badges)
+* credentials list (LinkedIn, School, test score) *display only*
+* contact info fields (email/Line/WhatsApp) stored but **hidden until unlocked**
+
+Also create **5 mentee profiles** (for demo switching).
+
+---
+
+## 5) Interactions (must “feel” real)
+
+### Search & filters
+
+* Filters update the list instantly (client-side filtering).
+* “Sort by price/rating/new” changes ordering.
+
+### Request flow
+
+* Clicking “Request Mentor” changes button state to “Requested ✅”
+* Mentor dashboard shows a new request (fake routing)
+
+### Unlock contact (freemium)
+
+* Contact info is blurred by default.
+* Clicking “Unlock Contact” opens checkout.
+* On “Pay” success: reveal contact info + show “Unlocked” badge.
+
+### Chat
+
+* Show a realistic thread (3–6 messages).
+* Sending message appends to UI only.
+
+### Booking
+
+* Show 6–10 available time slots.
+* Confirm shows success state + adds a “Upcoming session” card.
+
+### Daily swipe/request limit (optional)
+
+* Display “Requests left today: 3/5” and decrement locally.
+
+---
+
+## 6) Acceptance criteria (demo-ready)
+
+The demo is considered done if:
+
+* A new visitor can complete the mentee story in **under 2 minutes**
+* All key buttons produce a convincing UI response (loading, success, state change)
+* Contact paywall visually works (blur → reveal)
+* Mentor dashboard shows requests and can “approve” them (even locally)
+
+---
+
+## 7) Tech notes (keep it lightweight)
+
+* **Web-only**, single-page app is fine.
+* Recommended: Next.js or plain React.
+* Use local state + seeded JSON (no backend required).
+* Optional: persist to localStorage so refresh keeps “unlocked” and “requested” states.
+
+---
+
+## 8) Out of scope (explicit)
+
+* Real authentication
+* Real payments
+* Real chat infrastructure
+* Real booking + calendar sync
+* Real verification/KYC (UI only)
+
+---
+
+If you want, tell me which frontend stack you’re using (Next.js / React / Vue) and I can produce a **one-file route map + component list** that your dev can build in a day (still demo-only, no backend).
