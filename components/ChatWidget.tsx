@@ -20,6 +20,10 @@ interface Conversation {
     messages: Message[];
 }
 
+import { MessageSquare } from "lucide-react";
+
+// ... existing imports
+
 export function ChatWidget() {
     const { isChatOpen, toggleChat, currentUserType } = useStore();
     const [activeConversationId, setActiveConversationId] = useState<string | null>(null);
@@ -44,8 +48,6 @@ export function ChatWidget() {
             ]
         }
     ]);
-
-    if (!isChatOpen) return null;
 
     const activeConv = conversations.find(c => c.id === activeConversationId);
 
@@ -73,8 +75,20 @@ export function ChatWidget() {
         }, 1500);
     };
 
+    if (!isChatOpen) {
+        return (
+            <button
+                onClick={toggleChat}
+                className="fixed bottom-6 left-6 z-50 h-14 w-14 bg-blue-600 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-blue-700 hover:scale-105 transition-all duration-200"
+            >
+                <MessageSquare className="h-7 w-7" />
+                <div className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full border-2 border-white"></div>
+            </button>
+        );
+    }
+
     return (
-        <div className="fixed bottom-4 right-4 z-50 w-80 md:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col transition-all duration-200 ease-in-out" style={{ height: '500px' }}>
+        <div className="fixed bottom-24 left-6 z-50 w-80 md:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col transition-all duration-200 ease-in-out origin-bottom-left" style={{ height: '500px' }}>
             {/* Header */}
             <div className="bg-blue-600 p-4 text-white flex justify-between items-center shadow-md">
                 <div className="flex items-center gap-2">

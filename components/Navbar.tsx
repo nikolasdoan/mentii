@@ -68,10 +68,6 @@ export function Navbar() {
                     </button>
 
                     <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="sm" className="relative" onClick={toggleChat}>
-                            <MessageSquare className="h-5 w-5" />
-                        </Button>
-
                         {!isMentor ? (
                             <Link href="/auth/login">
                                 <Button variant="primary" size="sm">
