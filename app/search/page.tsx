@@ -89,15 +89,21 @@ export default function SearchPage() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                        {['English', 'IELTS', 'SAT', 'K12 Exam'].map((tag) => (
-                            <button
-                                key={tag}
-                                onClick={() => setSearchQuery(tag)}
-                                className="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-600 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all shadow-sm"
-                            >
-                                {tag}
-                            </button>
-                        ))}
+                        {['English', 'IELTS', 'SAT', 'K12 Exam'].map((tag) => {
+                            const isActive = searchQuery === tag;
+                            return (
+                                <button
+                                    key={tag}
+                                    onClick={() => setSearchQuery(isActive ? '' : tag)}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border ${isActive
+                                            ? 'bg-blue-600 text-white border-blue-600'
+                                            : 'bg-white border-gray-200 text-gray-600 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50'
+                                        }`}
+                                >
+                                    {tag}
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
