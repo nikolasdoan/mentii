@@ -32,6 +32,6 @@ export type Mentee = {
     avatar: string;
 };
 
-export type UserRole = 'mentor' | 'mentee';
+export type UserRole = 'mentor' | 'mentee' | 'admin';
 
 export type RequestStatus = 'pending' | 'approved' | 'rejected' | 'none';
