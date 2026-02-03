@@ -33,12 +33,21 @@ export function Navbar() {
                         <span>Mentii</span>
                     </Link>
                     <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-                        <Link
-                            href="/search"
-                            className={cn("transition-colors hover:text-blue-600", pathname === '/search' && "text-blue-600")}
-                        >
-                            Browse Mentors
-                        </Link>
+                        {!isMentor ? (
+                            <Link
+                                href="/search"
+                                className={cn("transition-colors hover:text-blue-600", pathname === '/search' && "text-blue-600")}
+                            >
+                                Browse Mentors
+                            </Link>
+                        ) : (
+                            <Link
+                                href="/become-a-mentor"
+                                className={cn("transition-colors hover:text-blue-600", pathname === '/become-a-mentor' && "text-blue-600")}
+                            >
+                                Mentor Overview
+                            </Link>
+                        )}
                         {isMentor && (
                             <Link
                                 href="/dashboard/mentor"
