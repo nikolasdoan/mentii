@@ -6,7 +6,7 @@ export const MOCK_MENTORS: Mentor[] = [
         name: 'Sarah Chen',
         avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah',
         headline: 'Senior Software Engineer at Google | Ex-Amazon',
-        country: 'USA',
+        country: 'Taiwan',
         tags: ['Software Engineering', 'System Design', 'Python'],
         languages: ['English', 'Mandarin'],
         timezone: 'UTC-8',
@@ -108,7 +108,7 @@ export const MOCK_MENTORS: Mentor[] = [
         name: 'David Kim',
         avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=David',
         headline: 'Investment Banking Associate at Goldman Sachs',
-        country: 'USA',
+        country: 'South Korea',
         tags: ['Finance', 'Investment Banking', 'Excel'],
         languages: ['English', 'Korean'],
         timezone: 'UTC-5',
@@ -202,7 +202,7 @@ export const MOCK_MENTORS: Mentor[] = [
         contactInfo: { email: 'mj.fit@example.com' }
     },
     {
-        id: '11', name: 'Linda Xu', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Linda', headline: 'Data Scientist at Airbnb', country: 'USA', tags: ['Data Science', 'Python', 'Machine Learning'], languages: ['English', 'Chinese'], timezone: 'UTC-8', priceStart: 120, priceEnd: 180, rating: 4.9, reviewCount: 18, responseRate: 90, credentials: [{ institution: 'Airbnb', description: 'Data Scientist' }], contactInfo: { email: 'linda.xu@example.com' }
+        id: '11', name: 'Linda Xu', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Linda', headline: 'Data Scientist at Airbnb', country: 'China', tags: ['Data Science', 'Python', 'Machine Learning'], languages: ['English', 'Chinese'], timezone: 'UTC-8', priceStart: 120, priceEnd: 180, rating: 4.9, reviewCount: 18, responseRate: 90, credentials: [{ institution: 'Airbnb', description: 'Data Scientist' }], contactInfo: { email: 'linda.xu@example.com' }
     },
     {
         id: '12', name: 'Tom Baker', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Tom', headline: 'English Conversation Partner', country: 'UK', tags: ['English', 'Conversation'], languages: ['English'], timezone: 'UTC+0', priceStart: 20, priceEnd: 30, rating: 4.5, reviewCount: 200, responseRate: 99, credentials: [{ institution: 'TEFL', description: 'Certified' }], contactInfo: { email: 'tom.speak@example.com' }
