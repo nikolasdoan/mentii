@@ -29,7 +29,7 @@ export default function MentorLandingPage() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link href="/auth/login?role=mentor">
+                        <Link href="/become-a-mentor/apply">
                             <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg bg-purple-600 hover:bg-purple-700 shadow-lg shadow-purple-200">
                                 Start Mentoring
                             </Button>
@@ -126,7 +126,7 @@ export default function MentorLandingPage() {
                     <p className="text-purple-200 text-lg mb-8 max-w-2xl mx-auto">
                         Join thousands of mentors who are making a difference and earning a side income.
                     </p>
-                    <Link href="/auth/login?role=mentor">
+                    <Link href="/become-a-mentor/apply">
                         <Button size="lg" className="bg-white text-purple-900 hover:bg-gray-100 h-14 px-8 text-lg font-bold">
                             Get Started Now
                         </Button>

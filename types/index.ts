@@ -39,3 +39,28 @@ export type Mentee = {
 export type UserRole = 'mentor' | 'mentee' | 'admin';
 
 export type RequestStatus = 'pending' | 'approved' | 'rejected' | 'none';
+
+export type ApplicationStatus = 'draft' | 'submitted' | 'approved' | 'rejected';
+
+export type MentorApplication = {
+    id: string;
+    step: number;
+    status: ApplicationStatus;
+    expertise: {
+        headline: string;
+        tags: string[];
+        bio: string;
+    };
+    credentials: {
+        id: string;
+        name: string;
+        fileUrl: string;
+    }[];
+    verification: {
+        documentUrl: string;
+    };
+    assessment: {
+        score: number;
+        videoUrl: string;
+    };
+};

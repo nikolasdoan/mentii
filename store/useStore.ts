@@ -1,11 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { RequestStatus, UserRole, Mentee } from '../types';
+import { RequestStatus, UserRole, Mentee, MentorApplication } from '../types';
 
 interface StoreState {
     currentUserType: UserRole;
     currentUserId: string; // ID of the current user (mentee or mentor)
     menteeProfile: Partial<Mentee>; // Current mentee's profile data
+    mentorApplication: Partial<MentorApplication>;
     unlockedMentors: string[]; // List of mentor IDs whose contact info is unlocked
     requests: Record<string, RequestStatus>; // Map of mentorId -> status
     bookings: string[]; // List of mentor IDs booked
@@ -13,6 +14,7 @@ interface StoreState {
     // Actions
     setUserType: (type: UserRole) => void;
     updateMenteeProfile: (data: Partial<Mentee>) => void;
+    updateMentorApplication: (data: Partial<MentorApplication>) => void;
     unlockMentor: (mentorId: string) => void;
     sendRequest: (mentorId: string) => void;
     updateRequestStatus: (mentorId: string, status: RequestStatus) => void;
@@ -32,6 +34,7 @@ export const useStore = create<StoreState>()(
             currentUserType: 'mentee',
             currentUserId: 'm1', // Default to Alice
             menteeProfile: {},
+            mentorApplication: { step: 1, expertise: { tags: [] } as any, credentials: [], verification: {} as any, assessment: {} as any },
             unlockedMentors: [],
             requests: {},
             bookings: [],
@@ -42,6 +45,18 @@ export const useStore = create<StoreState>()(
             updateMenteeProfile: (data) => set((state) => ({
                 menteeProfile: { ...state.menteeProfile, ...data }
             })),
+
+            updateMentorApplication: (data) => set((state) => {
+                const current = state.mentorApplication || {};
+                // Deep merge for nested objects if needed, but simple spread is fine for top level partials.
+                // For deep nested updates (like expertise), we might need to be careful, but we'll handle that in the component or simple spread here.
+                // Let's do a shallow merge of the top level properties, and rely on the caller to provide full objects for nested fields if they change.
+                /* 
+                   Actually, a better way for nested updates in Zustand simple setters is to just Merge.
+                   let's do a simple merge.
+                */
+                return { mentorApplication: { ...state.mentorApplication, ...data } };
+            }),
 
             toggleChat: () => set((state) => ({ isChatOpen: !state.isChatOpen })),
 
