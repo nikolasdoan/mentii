@@ -2,19 +2,29 @@
 
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, Suspense } from 'react';
 import { Zap } from 'lucide-react';
+import { useStore } from '@/store/useStore';
 
-export default function LoginPage() {
+function LoginForm() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const { setUserType } = useStore();
     const [isLoading, setIsLoading] = useState(false);
+
+    const role = searchParams.get('role');
 
     const handleLogin = (provider: string) => {
         setIsLoading(true);
         // Fake delay
         setTimeout(() => {
-            router.push('/search');
+            if (role === 'mentor') {
+                setUserType('mentor');
+                router.push('/dashboard/mentor');
+            } else {
+                router.push('/search');
+            }
         }, 800);
     };
 
@@ -80,5 +90,13 @@ export default function LoginPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <LoginForm />
+        </Suspense>
     );
 }

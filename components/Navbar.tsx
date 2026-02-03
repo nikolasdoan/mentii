@@ -18,7 +18,7 @@ export function Navbar() {
         const newType = isMentor ? 'mentee' : 'mentor';
         setUserType(newType);
         if (newType === 'mentor') {
-            router.push('/dashboard/mentor');
+            router.push('/become-a-mentor');
         } else {
             router.push('/search');
         }
