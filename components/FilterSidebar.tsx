@@ -4,15 +4,17 @@ interface FilterSidebarProps {
     filters: {
         topic: string;
         language: string;
+        country: string;
         maxPrice: number;
         sortBy: string;
     };
     setFilters: (filters: any) => void;
     uniqueTags: string[];
     uniqueLanguages: string[];
+    uniqueCountries: string[];
 }
 
-export function FilterSidebar({ filters, setFilters, uniqueTags, uniqueLanguages }: FilterSidebarProps) {
+export function FilterSidebar({ filters, setFilters, uniqueTags, uniqueLanguages, uniqueCountries }: FilterSidebarProps) {
 
     const handleChange = (key: string, value: any) => {
         setFilters((prev: any) => ({ ...prev, [key]: value }));
@@ -30,6 +32,20 @@ export function FilterSidebar({ filters, setFilters, uniqueTags, uniqueLanguages
                     <option value="">All Topics</option>
                     {uniqueTags.map(tag => (
                         <option key={tag} value={tag}>{tag}</option>
+                    ))}
+                </select>
+            </div>
+
+            <div>
+                <h3 className="font-semibold mb-3">Country</h3>
+                <select
+                    className="w-full border rounded-md p-2 bg-white"
+                    value={filters.country}
+                    onChange={(e) => handleChange('country', e.target.value)}
+                >
+                    <option value="">All Countries</option>
+                    {uniqueCountries.map(c => (
+                        <option key={c} value={c}>{c}</option>
                     ))}
                 </select>
             </div>
@@ -97,7 +113,7 @@ export function FilterSidebar({ filters, setFilters, uniqueTags, uniqueLanguages
                 <Button
                     variant="ghost"
                     className="w-full text-gray-500 hover:text-red-500"
-                    onClick={() => setFilters({ topic: '', language: '', maxPrice: 500, sortBy: 'recommended' })}
+                    onClick={() => setFilters({ topic: '', language: '', country: '', maxPrice: 500, sortBy: 'recommended' })}
                 >
                     Reset Filters
                 </Button>

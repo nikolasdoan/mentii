@@ -13,6 +13,7 @@ export default function SearchPage() {
     const [filters, setFilters] = useState({
         topic: '',
         language: '',
+        country: '',
         maxPrice: 500,
         sortBy: 'recommended',
     });
@@ -22,6 +23,7 @@ export default function SearchPage() {
     // Derived data for dropdowns
     const uniqueTags = useMemo(() => Array.from(new Set(MOCK_MENTORS.flatMap(m => m.tags))).sort(), []);
     const uniqueLanguages = useMemo(() => Array.from(new Set(MOCK_MENTORS.flatMap(m => m.languages))).sort(), []);
+    const uniqueCountries = useMemo(() => Array.from(new Set(MOCK_MENTORS.map(m => m.country))).sort(), []);
 
     // Filter Logic
     const filteredMentors = useMemo(() => {
@@ -38,6 +40,10 @@ export default function SearchPage() {
 
         if (filters.topic) {
             result = result.filter(m => m.tags.includes(filters.topic));
+        }
+
+        if (filters.country) {
+            result = result.filter(m => m.country === filters.country);
         }
 
         if (filters.language) {
@@ -96,8 +102,8 @@ export default function SearchPage() {
                                     key={tag}
                                     onClick={() => setSearchQuery(isActive ? '' : tag)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border ${isActive
-                                            ? 'bg-blue-600 text-white border-blue-600'
-                                            : 'bg-white border-gray-200 text-gray-600 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50'
+                                        ? 'bg-blue-600 text-white border-blue-600'
+                                        : 'bg-white border-gray-200 text-gray-600 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50'
                                         }`}
                                 >
                                     {tag}
@@ -114,6 +120,7 @@ export default function SearchPage() {
                     setFilters={setFilters}
                     uniqueTags={uniqueTags}
                     uniqueLanguages={uniqueLanguages}
+                    uniqueCountries={uniqueCountries}
                 />
 
                 <div className="flex-1">

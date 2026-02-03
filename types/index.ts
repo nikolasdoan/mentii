@@ -3,6 +3,7 @@ export type Mentor = {
     name: string;
     avatar: string;
     headline: string;
+    country: string;
     tags: string[];
     languages: string[];
     timezone: string;
