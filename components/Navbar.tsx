@@ -4,14 +4,25 @@ import Link from 'next/link';
 import { useStore } from '@/store/useStore';
 import { Button } from '@/components/ui/Button';
 import { Layout, MessageSquare, User, Zap } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/components/ui/Button';
 
 export function Navbar() {
     const { currentUserType, setUserType, requests, resetDemo } = useStore();
     const pathname = usePathname();
+    const router = useRouter();
 
     const isMentor = currentUserType === 'mentor';
+
+    const handleSwitchMode = () => {
+        const newType = isMentor ? 'mentee' : 'mentor';
+        setUserType(newType);
+        if (newType === 'mentor') {
+            router.push('/dashboard/mentor');
+        } else {
+            router.push('/search');
+        }
+    };
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
@@ -41,7 +52,7 @@ export function Navbar() {
 
                 <div className="flex items-center gap-4">
                     <button
-                        onClick={() => setUserType(isMentor ? 'mentee' : 'mentor')}
+                        onClick={handleSwitchMode}
                         className="text-xs font-medium text-gray-500 hover:text-gray-900 border px-2 py-1 rounded"
                     >
                         Switch to {isMentor ? 'Mentee' : 'Mentor'} View
