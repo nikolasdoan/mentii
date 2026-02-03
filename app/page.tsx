@@ -35,7 +35,7 @@ export default function Home() {
                 Find a Mentor
               </Button>
             </Link>
-            <Link href="/auth/login?role=mentor">
+            <Link href="/become-a-mentor">
               <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-lg">
                 Become a Mentor
               </Button>
