@@ -23,7 +23,7 @@ export function Navbar() {
 
         if (newType === 'mentor') router.push('/become-a-mentor');
         else if (newType === 'admin') router.push('/dashboard/admin');
-        else router.push('/search');
+        else router.push('/dashboard/mentee');
     };
 
     const nextRole = currentUserType === 'mentee' ? 'Mentor' : currentUserType === 'mentor' ? 'Admin' : 'Mentee';
@@ -38,12 +38,20 @@ export function Navbar() {
                     </Link>
                     <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
                         {currentUserType === 'mentee' && (
-                            <Link
-                                href="/search"
-                                className={cn("transition-colors hover:text-blue-600", pathname === '/search' && "text-blue-600")}
-                            >
-                                Browse Mentors
-                            </Link>
+                            <>
+                                <Link
+                                    href="/search"
+                                    className={cn("transition-colors hover:text-blue-600", pathname === '/search' && "text-blue-600")}
+                                >
+                                    Browse Mentors
+                                </Link>
+                                <Link
+                                    href="/dashboard/mentee"
+                                    className={cn("transition-colors hover:text-blue-600", pathname === '/dashboard/mentee' && "text-blue-600")}
+                                >
+                                    Dashboard
+                                </Link>
+                            </>
                         )}
                         {currentUserType === 'mentor' && (
                             <>
