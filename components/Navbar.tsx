@@ -43,7 +43,13 @@ export function Navbar() {
                                     href="/search"
                                     className={cn("transition-colors hover:text-blue-600", pathname === '/search' && "text-blue-600")}
                                 >
-                                    Browse Mentors
+                                    Search
+                                </Link>
+                                <Link
+                                    href="/explore"
+                                    className={cn("transition-colors hover:text-blue-600", pathname === '/explore' && "text-blue-600")}
+                                >
+                                    Explore
                                 </Link>
                                 <Link
                                     href="/dashboard/mentee"
