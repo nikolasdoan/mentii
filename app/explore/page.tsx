@@ -30,7 +30,7 @@ export default function ExplorePage() {
                         <Zap className="h-4 w-4 fill-current" />
                         <span>Discover Mentors</span>
                     </div>
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Find your match</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Find your match, learn new things</h1>
                 </div>
 
                 <div className="relative w-full max-w-sm h-[600px] perspective-1000">
