@@ -4,6 +4,7 @@ import './globals.css';
 import { clsx } from 'clsx';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { DemoTutorial } from '@/components/DemoTutorial';
 
 import { ChatWidget } from '@/components/ChatWidget';
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
         </div>
         <ChatWidget />
+        <DemoTutorial />
         <Footer />
       </body>
     </html>

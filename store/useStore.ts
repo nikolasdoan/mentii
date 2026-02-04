@@ -26,6 +26,8 @@ interface StoreState {
     isChatOpen: boolean;
     toggleChat: () => void;
     resetDemo: () => void;
+    tutorialSeen: boolean;
+    setTutorialSeen: (seen: boolean) => void;
 }
 
 export const useStore = create<StoreState>()(
@@ -39,6 +41,9 @@ export const useStore = create<StoreState>()(
             requests: {},
             bookings: [],
             isChatOpen: false,
+            tutorialSeen: false,
+
+            setTutorialSeen: (seen) => set({ tutorialSeen: seen }),
 
             setUserType: (type) => set({ currentUserType: type }),
 
@@ -88,7 +93,8 @@ export const useStore = create<StoreState>()(
                 currentUserType: 'mentee',
                 unlockedMentors: [],
                 requests: {},
-                bookings: []
+                bookings: [],
+                tutorialSeen: false
             })
         }),
         {

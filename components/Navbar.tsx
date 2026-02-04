@@ -36,7 +36,7 @@ export function Navbar() {
                         <Zap className="h-6 w-6" />
                         <span>Mentii</span>
                     </Link>
-                    <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+                    <nav id="demo-nav-links" className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
                         {currentUserType === 'mentee' && (
                             <>
                                 <Link
@@ -88,6 +88,7 @@ export function Navbar() {
 
                 <div className="flex items-center gap-4">
                     <button
+                        id="demo-switch-mode"
                         onClick={handleSwitchMode}
                         className="text-xs font-medium text-gray-500 hover:text-gray-900 border px-2 py-1 rounded min-w-[120px]"
                     >
