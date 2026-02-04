@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
+import { ChevronDown, ChevronUp, Filter, X } from 'lucide-react';
+import { cn } from '@/components/ui/Button';
 
 interface FilterSidebarProps {
     filters: {
@@ -15,109 +18,130 @@ interface FilterSidebarProps {
 }
 
 export function FilterSidebar({ filters, setFilters, uniqueTags, uniqueLanguages, uniqueCountries }: FilterSidebarProps) {
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleChange = (key: string, value: any) => {
         setFilters((prev: any) => ({ ...prev, [key]: value }));
     };
 
     return (
-        <div className="w-full md:w-64 space-y-6 shrink-0">
-            <div>
-                <h3 className="font-semibold mb-3">Topic / Skill</h3>
-                <select
-                    className="w-full border rounded-md p-2 bg-white"
-                    value={filters.topic}
-                    onChange={(e) => handleChange('topic', e.target.value)}
-                >
-                    <option value="">All Topics</option>
-                    {uniqueTags.map(tag => (
-                        <option key={tag} value={tag}>{tag}</option>
-                    ))}
-                </select>
-            </div>
-
-            <div>
-                <h3 className="font-semibold mb-3">Country</h3>
-                <select
-                    className="w-full border rounded-md p-2 bg-white"
-                    value={filters.country}
-                    onChange={(e) => handleChange('country', e.target.value)}
-                >
-                    <option value="">All Countries</option>
-                    {uniqueCountries.map(c => (
-                        <option key={c} value={c}>{c}</option>
-                    ))}
-                </select>
-            </div>
-
-            <div>
-                <h3 className="font-semibold mb-3">Language</h3>
-                <select
-                    className="w-full border rounded-md p-2 bg-white"
-                    value={filters.language}
-                    onChange={(e) => handleChange('language', e.target.value)}
-                >
-                    <option value="">All Languages</option>
-                    {uniqueLanguages.map(lang => (
-                        <option key={lang} value={lang}>{lang}</option>
-                    ))}
-                </select>
-            </div>
-
-            <div>
-                <h3 className="font-semibold mb-3 flex justify-between">
-                    <span>Max Price</span>
-                    <span className="text-gray-500 font-normal">${filters.maxPrice}/hr</span>
-                </h3>
-                <input
-                    type="range"
-                    min="10"
-                    max="500"
-                    step="10"
-                    value={filters.maxPrice}
-                    onChange={(e) => handleChange('maxPrice', Number(e.target.value))}
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-                />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
-                    <span>$10</span>
-                    <span>$500+</span>
-                </div>
-            </div>
-
-            <div>
-                <h3 className="font-semibold mb-3">Sort By</h3>
-                <div className="space-y-2">
-                    {[
-                        { label: 'Recommended', value: 'recommended' },
-                        { label: 'Price: Low to High', value: 'price_asc' },
-                        { label: 'Price: High to Low', value: 'price_desc' },
-                        { label: 'Highest Rated', value: 'rating' },
-                        { label: 'Newest', value: 'newest' },
-                    ].map((option) => (
-                        <label key={option.value} className="flex items-center gap-2 cursor-pointer">
-                            <input
-                                type="radio"
-                                name="sortBy"
-                                value={option.value}
-                                checked={filters.sortBy === option.value}
-                                onChange={(e) => handleChange('sortBy', e.target.value)}
-                                className="text-blue-600 focus:ring-blue-500"
-                            />
-                            <span className="text-sm">{option.label}</span>
-                        </label>
-                    ))}
-                </div>
-            </div>
-
-            <div className="pt-4 border-t">
+        <>
+            {/* Mobile Toggle */}
+            <div className="md:hidden w-full mb-4">
                 <Button
-                    variant="ghost"
-                    className="w-full text-gray-500 hover:text-red-500"
-                    onClick={() => setFilters({ topic: '', language: '', country: '', maxPrice: 500, sortBy: 'recommended' })}
+                    variant="outline"
+                    className="w-full flex items-center justify-between"
+                    onClick={() => setIsOpen(!isOpen)}
                 >
-                    Reset Filters
+                    <span className="flex items-center gap-2">
+                        <Filter className="h-4 w-4" /> Filters
+                    </span>
+                    {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </Button>
             </div>
-        </div>
+
+            {/* Sidebar Content */}
+            <div className={cn(
+                "w-full md:w-64 space-y-6 shrink-0 md:block",
+                isOpen ? "block" : "hidden"
+            )}>
+                <div>
+                    <h3 className="font-semibold mb-3">Topic / Skill</h3>
+                    <select
+                        className="w-full border rounded-md p-2 bg-white"
+                        value={filters.topic}
+                        onChange={(e) => handleChange('topic', e.target.value)}
+                    >
+                        <option value="">All Topics</option>
+                        {uniqueTags.map(tag => (
+                            <option key={tag} value={tag}>{tag}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div>
+                    <h3 className="font-semibold mb-3">Country</h3>
+                    <select
+                        className="w-full border rounded-md p-2 bg-white"
+                        value={filters.country}
+                        onChange={(e) => handleChange('country', e.target.value)}
+                    >
+                        <option value="">All Countries</option>
+                        {uniqueCountries.map(c => (
+                            <option key={c} value={c}>{c}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div>
+                    <h3 className="font-semibold mb-3">Language</h3>
+                    <select
+                        className="w-full border rounded-md p-2 bg-white"
+                        value={filters.language}
+                        onChange={(e) => handleChange('language', e.target.value)}
+                    >
+                        <option value="">All Languages</option>
+                        {uniqueLanguages.map(lang => (
+                            <option key={lang} value={lang}>{lang}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div>
+                    <h3 className="font-semibold mb-3 flex justify-between">
+                        <span>Max Price</span>
+                        <span className="text-gray-500 font-normal">${filters.maxPrice}/hr</span>
+                    </h3>
+                    <input
+                        type="range"
+                        min="10"
+                        max="500"
+                        step="10"
+                        value={filters.maxPrice}
+                        onChange={(e) => handleChange('maxPrice', Number(e.target.value))}
+                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                        <span>$10</span>
+                        <span>$500+</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 className="font-semibold mb-3">Sort By</h3>
+                    <div className="space-y-2">
+                        {[
+                            { label: 'Recommended', value: 'recommended' },
+                            { label: 'Price: Low to High', value: 'price_asc' },
+                            { label: 'Price: High to Low', value: 'price_desc' },
+                            { label: 'Highest Rated', value: 'rating' },
+                            { label: 'Newest', value: 'newest' },
+                        ].map((option) => (
+                            <label key={option.value} className="flex items-center gap-2 cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="sortBy"
+                                    value={option.value}
+                                    checked={filters.sortBy === option.value}
+                                    onChange={(e) => handleChange('sortBy', e.target.value)}
+                                    className="text-blue-600 focus:ring-blue-500"
+                                />
+                                <span className="text-sm">{option.label}</span>
+                            </label>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="pt-4 border-t">
+                    <Button
+                        variant="ghost"
+                        className="w-full text-gray-500 hover:text-red-500"
+                        onClick={() => setFilters({ topic: '', language: '', country: '', maxPrice: 500, sortBy: 'recommended' })}
+                    >
+                        Reset Filters
+                    </Button>
+                </div>
+            </div>
+        </>
     );
 }

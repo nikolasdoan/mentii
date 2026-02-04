@@ -118,7 +118,7 @@ export default function OnboardingPage() {
             </div>
 
             {/* Right Panel: Form */}
-            <div className="w-full md:w-2/3 p-8 md:p-24 flex flex-col justify-center bg-gray-50/50">
+            <div className="w-full md:w-2/3 p-6 md:p-24 flex flex-col justify-center bg-gray-50/50">
                 <AnimatePresence mode="wait">
 
                     {/* STEP 1: SEGMENT */}

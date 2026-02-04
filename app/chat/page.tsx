@@ -27,7 +27,7 @@ export default function ChatPage() {
     };
 
     return (
-        <main className="flex flex-col h-screen max-h-screen bg-gray-50">
+        <main className="flex flex-col h-[100dvh] max-h-[100dvh] bg-gray-50">
             <div className="bg-white border-b px-4 py-3 flex items-center gap-3 shrink-0">
                 <Link href="/search" className="text-gray-500 hover:text-gray-900">
                     <ArrowLeft className="h-5 w-5" />
@@ -63,6 +63,7 @@ export default function ChatPage() {
                         placeholder="Type a message..."
                         value={input}
                         onChange={e => setInput(e.target.value)}
+                        enterKeyHint="send"
                     />
                     <Button type="submit" size="sm" className="rounded-full h-10 w-10 p-0 flex items-center justify-center">
                         <Send className="h-4 w-4" />

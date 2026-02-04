@@ -42,7 +42,7 @@ export default function MentorProfilePage() {
             </div>
 
             <div className="container mx-auto px-4 -mt-20 relative">
-                <div className="bg-white rounded-2xl shadow-sm border p-6 md:p-8">
+                <div className="bg-white rounded-2xl shadow-sm border p-4 md:p-8">
                     <div className="flex flex-col md:flex-row gap-8 items-start">
                         {/* Avatar */}
                         <div className="relative shrink-0">
@@ -125,7 +125,7 @@ export default function MentorProfilePage() {
                         </div>
                     </div>
 
-                    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                         {/* Left col: Bio & Credentials */}
                         <div className="md:col-span-2 space-y-10">
                             <section>
