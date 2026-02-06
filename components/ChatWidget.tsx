@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useStore } from "@/store/useStore";
 import { X, Send, User, ChevronLeft, Minimize2 } from "lucide-react";
 import { Button } from "./ui/Button";
-import { cn } from "./ui/Button";
+import { cn } from "@/lib/utils";
 
 interface Message {
     id: number;

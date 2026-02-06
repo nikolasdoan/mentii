@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { useStore } from '@/store/useStore';
 import { useRouter } from 'next/navigation';
 import { Check, ChevronRight, Upload, Video, Shield, Award, BookOpen, User, FileText, Camera } from 'lucide-react';
-import { cn } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 
 // Steps
 const STEPS = [

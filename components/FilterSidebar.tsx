@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { ChevronDown, ChevronUp, Filter, X } from 'lucide-react';
-import { cn } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 
 interface FilterSidebarProps {
     filters: {

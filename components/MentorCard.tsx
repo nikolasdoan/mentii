@@ -4,7 +4,7 @@ import { Mentor } from '@/types';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Star, CheckCircle, Clock } from 'lucide-react';
-import { cn } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 
 interface MentorCardProps {
     mentor: Mentor;

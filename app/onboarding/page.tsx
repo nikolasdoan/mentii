@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { useStore } from '@/store/useStore';
 import { useRouter } from 'next/navigation';
 import { Check, ChevronRight, GraduationCap, Briefcase, School, User, BookOpen, Target, Sparkles, Code, Globe, PenTool } from 'lucide-react';
-import { cn } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 
 // Step Data
 const SEGMENTS = [
@@ -83,7 +83,7 @@ export default function OnboardingPage() {
     };
 
     return (
-        <main className="min-h-screen bg-white flex flex-col md:flex-row">
+        <main className="h-screen bg-white flex flex-col md:flex-row overflow-hidden">
             {/* Left Panel: Progress & Context */}
             <div className="w-full md:w-1/3 bg-blue-600 p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
@@ -118,7 +118,7 @@ export default function OnboardingPage() {
             </div>
 
             {/* Right Panel: Form */}
-            <div className="w-full md:w-2/3 p-6 md:p-24 flex flex-col justify-center bg-gray-50/50">
+            <div className="w-full md:w-2/3 p-6 md:p-24 flex flex-col justify-center bg-gray-50/50 overflow-y-auto">
                 <AnimatePresence mode="wait">
 
                     {/* STEP 1: SEGMENT */}
@@ -138,17 +138,17 @@ export default function OnboardingPage() {
                                         key={s.id}
                                         onClick={() => setSegment(s.id)}
                                         className={cn(
-                                            "flex items-start gap-4 p-6 rounded-xl border text-left transition-all hover:scale-[1.02] duration-200",
+                                            "flex items-start gap-3 p-4 rounded-xl border text-left transition-all hover:scale-[1.02] duration-200",
                                             segment === s.id
                                                 ? "border-blue-600 bg-blue-50 ring-2 ring-blue-600 ring-offset-2"
                                                 : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-md"
                                         )}
                                     >
-                                        <div className={cn("p-3 rounded-lg shrink-0", segment === s.id ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-500")}>
-                                            <s.icon className="h-6 w-6" />
+                                        <div className={cn("p-2 rounded-lg shrink-0", segment === s.id ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-500")}>
+                                            <s.icon className="h-5 w-5" />
                                         </div>
                                         <div>
-                                            <div className={cn("font-bold text-lg mb-1", segment === s.id ? "text-blue-900" : "text-gray-900")}>{s.label}</div>
+                                            <div className={cn("font-bold text-base mb-0.5", segment === s.id ? "text-blue-900" : "text-gray-900")}>{s.label}</div>
                                             <div className="text-sm text-gray-500 leading-snug">{s.desc}</div>
                                         </div>
                                     </button>
@@ -240,7 +240,7 @@ export default function OnboardingPage() {
                                         key={l}
                                         onClick={() => setLevel(l)}
                                         className={cn(
-                                            "w-full flex items-center justify-between p-6 rounded-xl border transition-all text-left",
+                                            "w-full flex items-center justify-between p-4 rounded-xl border transition-all text-left",
                                             level === l ? "bg-green-50 border-green-500 ring-1 ring-green-500" : "bg-white border-gray-200 hover:border-gray-300"
                                         )}
                                     >

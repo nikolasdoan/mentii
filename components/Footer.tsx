@@ -1,4 +1,10 @@
+"use client";
+
+import { usePathname } from 'next/navigation';
+
 export function Footer() {
+    const pathname = usePathname();
+    if (pathname === '/onboarding') return null;
     return (
         <footer className="border-t bg-white py-6 md:py-0">
             <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row mx-auto px-4 md:px-8 pb-20 md:pb-0">

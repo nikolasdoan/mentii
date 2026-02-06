@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import { DemoTutorial } from '@/components/DemoTutorial';
 
 import { ChatWidget } from '@/components/ChatWidget';
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
         </div>
         <ChatWidget />
         <DemoTutorial />
+        <Toaster />
         <Footer />
       </body>
     </html>

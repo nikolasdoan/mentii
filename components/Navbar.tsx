@@ -5,12 +5,14 @@ import { useStore } from '@/store/useStore';
 import { Button } from '@/components/ui/Button';
 import { Layout, MessageSquare, User, Zap } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
-import { cn } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 
 export function Navbar() {
     const { currentUserType, setUserType, requests, resetDemo, toggleChat } = useStore();
     const pathname = usePathname();
     const router = useRouter();
+
+    if (pathname === '/onboarding') return null;
 
 
     const handleSwitchMode = () => {

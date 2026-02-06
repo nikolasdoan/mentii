@@ -9,7 +9,7 @@ import { UnlockModal } from '@/components/UnlockModal';
 import { useState } from 'react';
 import { ArrowLeft, MessageSquare, Calendar, Lock, Mail, Phone, MapPin, Globe, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
-import { cn } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 
 export default function MentorProfilePage() {
     const { id } = useParams();
