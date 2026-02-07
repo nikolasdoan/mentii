@@ -7,8 +7,12 @@ import { MentorCard } from '@/components/MentorCard';
 import { Button } from '@/components/ui/Button';
 import { X, Heart, RefreshCw, Zap } from 'lucide-react';
 
+import { useStore } from '@/store/useStore';
+
 export default function ExplorePage() {
-    const [cards, setCards] = useState(MOCK_MENTORS);
+    const { communityMentors } = useStore();
+    // Combine store mentors (newest first) with mock mentors
+    const [cards, setCards] = useState([...communityMentors, ...MOCK_MENTORS]);
     const [result, setResult] = useState<'like' | 'pass' | null>(null);
 
     const activeCard = cards[cards.length - 1];
@@ -58,7 +62,7 @@ export default function ExplorePage() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-gray-900 mb-2">That's everyone!</h3>
                                 <p className="text-gray-500 mb-8">You've seen all available mentors for now. Check back later for new profiles.</p>
-                                <Button onClick={() => setCards(MOCK_MENTORS)} size="lg">
+                                <Button onClick={() => setCards([...communityMentors, ...MOCK_MENTORS])} size="lg">
                                     Start Over
                                 </Button>
                             </motion.div>

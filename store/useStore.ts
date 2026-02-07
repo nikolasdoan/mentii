@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { RequestStatus, UserRole, Mentee, MentorApplication } from '../types';
+import { RequestStatus, UserRole, Mentee, MentorApplication, Mentor } from '../types';
 
 interface StoreState {
     currentUserType: UserRole;
@@ -10,15 +10,20 @@ interface StoreState {
     unlockedMentors: string[]; // List of mentor IDs whose contact info is unlocked
     requests: Record<string, RequestStatus>; // Map of mentorId -> status
     bookings: string[]; // List of mentor IDs booked
+    communityMentors: Mentor[]; // User-generated mentors
+    currentUser: Mentee | Mentor | undefined; // Derived helper
 
     // Actions
+    setUserId: (id: string) => void;
     setUserType: (type: UserRole) => void;
     updateMenteeProfile: (data: Partial<Mentee>) => void;
     updateMentorApplication: (data: Partial<MentorApplication>) => void;
+    updateMentorProfile: (data: Partial<Mentor>) => void;
     unlockMentor: (mentorId: string) => void;
     sendRequest: (mentorId: string) => void;
     updateRequestStatus: (mentorId: string, status: RequestStatus) => void;
     bookMentor: (mentorId: string) => void;
+    addCommunityMentor: (mentor: Mentor) => void;
 
     // Selectors (helpers)
     isUnlocked: (mentorId: string) => boolean;
@@ -35,11 +40,13 @@ export const useStore = create<StoreState>()(
         (set, get) => ({
             currentUserType: 'mentee',
             currentUserId: 'm1', // Default to Alice
+            currentUser: undefined,
             menteeProfile: {},
             mentorApplication: { step: 1, expertise: { tags: [] } as any, credentials: [], verification: {} as any, assessment: {} as any },
             unlockedMentors: [],
             requests: {},
             bookings: [],
+            communityMentors: [],
             isChatOpen: false,
             tutorialSeen: false,
 
@@ -83,6 +90,19 @@ export const useStore = create<StoreState>()(
             bookMentor: (mentorId) =>
                 set((state) => ({
                     bookings: [...state.bookings, mentorId]
+                })),
+
+            setUserId: (id) => set({ currentUserId: id }),
+
+            updateMentorProfile: (data) => set((state) => ({
+                communityMentors: state.communityMentors.map(m =>
+                    m.id === state.currentUserId ? { ...m, ...data } : m
+                )
+            })),
+
+            addCommunityMentor: (mentor) =>
+                set((state) => ({
+                    communityMentors: [mentor, ...state.communityMentors]
                 })),
 
             isUnlocked: (mentorId) => get().unlockedMentors.includes(mentorId),

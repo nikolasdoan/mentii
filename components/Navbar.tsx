@@ -47,12 +47,7 @@ export function Navbar() {
                                 >
                                     Search
                                 </Link>
-                                <Link
-                                    href="/explore"
-                                    className={cn("transition-colors hover:text-blue-600", pathname === '/explore' && "text-blue-600")}
-                                >
-                                    Explore
-                                </Link>
+                                {/* Explore hidden on desktop, shown on mobile nav */}
                                 <Link
                                     href="/dashboard/mentee"
                                     className={cn("transition-colors hover:text-blue-600", pathname === '/dashboard/mentee' && "text-blue-600")}

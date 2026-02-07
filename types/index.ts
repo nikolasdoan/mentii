@@ -25,6 +25,10 @@ export type Mentor = {
     };
     isNew?: boolean;
     isVerified?: boolean;
+    age?: number;
+    school?: string;
+    major?: string;
+    gpa?: string;
 };
 
 export type Mentee = {

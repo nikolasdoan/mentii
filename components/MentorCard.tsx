@@ -42,6 +42,20 @@ export function MentorCard({ mentor, onCompareToggle, isSelectedForCompare }: Me
                 </div>
             </div>
 
+            {(mentor.school || mentor.age) && (
+                <div className="mt-2 text-xs text-gray-500 flex flex-wrap gap-2 items-center">
+                    {mentor.school && (
+                        <span className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded border border-blue-100">{mentor.school}</span>
+                    )}
+                    {mentor.age && (
+                        <span>{mentor.age} y/o</span>
+                    )}
+                    {mentor.gpa && (
+                        <span>GPA: {mentor.gpa}</span>
+                    )}
+                </div>
+            )}
+
             <div className="mt-4 flex flex-wrap gap-2">
                 {mentor.isNew && <Badge variant="success">New</Badge>}
                 {mentor.tags.slice(0, 3).map(tag => (

@@ -3,10 +3,12 @@
 import { useState, useMemo } from 'react';
 import { MOCK_MENTORS } from '@/data/mentors';
 import { MentorCard } from '@/components/MentorCard';
+import { MentorListItem } from '@/components/MentorListItem';
 import { FilterSidebar } from '@/components/FilterSidebar';
 import { ComparePanel } from '@/components/ComparePanel';
 import { Mentor } from '@/types';
-import { Search as SearchIcon } from 'lucide-react';
+import { Search as SearchIcon, LayoutGrid, List as ListIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function SearchPage() {
     const [searchQuery, setSearchQuery] = useState('');
@@ -17,6 +19,9 @@ export default function SearchPage() {
         maxPrice: 500,
         sortBy: 'recommended',
     });
+
+    // View Mode State
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
     const [compareList, setCompareList] = useState<Mentor[]>([]);
 
@@ -124,19 +129,56 @@ export default function SearchPage() {
                 />
 
                 <div className="flex-1">
-                    <div className="mb-4 text-sm text-gray-500">
-                        Showing {filteredMentors.length} mentors
+                    <div className="flex items-center justify-between mb-4">
+                        <div className="text-sm text-gray-500">
+                            Showing {filteredMentors.length} mentors
+                        </div>
+
+                        <div className="flex bg-gray-100 p-1 rounded-lg">
+                            <button
+                                onClick={() => setViewMode('grid')}
+                                className={cn(
+                                    "p-2 rounded-md transition-all",
+                                    viewMode === 'grid' ? "bg-white shadow-sm text-blue-600" : "text-gray-500 hover:text-gray-700"
+                                )}
+                                title="Grid View"
+                            >
+                                <LayoutGrid className="h-4 w-4" />
+                            </button>
+                            <button
+                                onClick={() => setViewMode('list')}
+                                className={cn(
+                                    "p-2 rounded-md transition-all",
+                                    viewMode === 'list' ? "bg-white shadow-sm text-blue-600" : "text-gray-500 hover:text-gray-700"
+                                )}
+                                title="List View"
+                            >
+                                <ListIcon className="h-4 w-4" />
+                            </button>
+                        </div>
                     </div>
 
                     {filteredMentors.length > 0 ? (
-                        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div className={cn(
+                            "gap-6",
+                            viewMode === 'grid' ? "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3" : "flex flex-col"
+                        )}>
                             {filteredMentors.map(mentor => (
-                                <MentorCard
-                                    key={mentor.id}
-                                    mentor={mentor}
-                                    onCompareToggle={toggleCompare}
-                                    isSelectedForCompare={!!compareList.find(m => m.id === mentor.id)}
-                                />
+                                viewMode === 'grid' ? (
+                                    <MentorCard
+                                        key={mentor.id}
+                                        mentor={mentor}
+                                        onCompareToggle={toggleCompare}
+                                        isSelectedForCompare={!!compareList.find(m => m.id === mentor.id)}
+                                    />
+                                ) : (
+                                    <MentorListItem
+                                        key={mentor.id}
+                                        mentor={mentor}
+                                        onCompareToggle={toggleCompare}
+                                        isSelectedForCompare={!!compareList.find(m => m.id === mentor.id)}
+                                    />
+                                )
                             ))}
                         </div>
                     ) : (

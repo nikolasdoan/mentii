@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { clsx } from 'clsx';
 import { Navbar } from '@/components/Navbar';
+import { MobileNav } from '@/components/MobileNav';
 import { Footer } from '@/components/Footer';
 import { DemoTutorial } from '@/components/DemoTutorial';
 
@@ -31,7 +32,9 @@ export default function RootLayout({
         <ChatWidget />
         <DemoTutorial />
         <Toaster />
+        <Toaster />
         <Footer />
+        <MobileNav />
       </body>
     </html>
   );
